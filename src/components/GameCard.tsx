@@ -19,13 +19,13 @@ const GameCard = ({ game }: Props) => {
         objectFit="cover"
       />
       <CardBody>
-        <Heading fontSize="2xl">{game.name}</Heading>
-        <HStack justifyContent="space-between" mt={2}>
+        <HStack justifyContent="space-between" mt={2} marginBottom={3}>
           <PlatformIconList
             platforms={game.parent_platforms.map((p) => p.platform)}
           />
           <CriticScore score={game.metacritic} />
         </HStack>
+        <Heading fontSize="2xl">{game.name}</Heading>
       </CardBody>
     </Card>
   );
