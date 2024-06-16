@@ -19,7 +19,6 @@ const useData = <T>(
     () => {
       // Create an instance of AbortController to cancel the request if needed
       const controller = new AbortController();
-
       // Make the API call to fetch games
       setLoading(true);
       apiClient
@@ -29,25 +28,21 @@ const useData = <T>(
         })
         .then((res) => {
           // On success, update the games state with the fetched data
-
           setData(res.data.results);
           setLoading(false);
         })
         .catch((err) => {
           // Ignore errors from canceled requests
           if (err instanceof CanceledError) return;
-
           // For other errors, update the error state
           setError(err.message);
           setLoading(false);
         });
-
       // Cleanup function to abort the fetch request if the component unmounts
       return () => controller.abort();
     },
     deps ? [...deps] : []
   );
-
   // Return the games data and any error encountered
   return { data, error, isLoading };
 };
